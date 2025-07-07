@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let food = {};
     let direction = 'right';
     let score = 0;
-    let speed = 150; // Milliseconds, lower is faster
+    let speed = 150;
     let gameInterval;
     let isGameOver = false;
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             x: Math.floor(Math.random() * (canvas.width / gridSize)),
             y: Math.floor(Math.random() * (canvas.height / gridSize))
         };
-        // Ensure food doesn't spawn on the snake
+        
         for (let segment of snake) {
             if (segment.x === food.x && segment.y === food.y) {
                 generateFood();
@@ -30,20 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function draw() {
-        // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw snake
         snake.forEach((segment, index) => {
-            ctx.fillStyle = index === 0 ? '#d81b60' : '#ff4081'; // Head is darker pink
+            ctx.fillStyle = index === 0 ? '#d81b60' : '#ff4081';
             ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
-            ctx.strokeStyle = '#fce4ec'; // Light pink outline for segments
+            ctx.strokeStyle = '#fce4ec';
             ctx.strokeRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
         });
 
-        // Draw food (apple)
-        ctx.fillStyle = '#4CAF50'; // Green for the apple
-        ctx.strokeStyle = '#388E3C'; // Darker green outline
+        ctx.fillStyle = '#4CAF50';
+        ctx.strokeStyle = '#388E3C';
         ctx.beginPath();
         ctx.arc(food.x * gridSize + gridSize / 2, food.y * gridSize + gridSize / 2, gridSize / 2, 0, 2 * Math.PI);
         ctx.fill();
@@ -53,9 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function update() {
         if (isGameOver) return;
 
-        const head = { ...snake[0] }; // Copy head
+        const head = { ...snake[0] };
 
-        // Move head
         switch (direction) {
             case 'up': head.y -= 1; break;
             case 'down': head.y += 1; break;
@@ -63,27 +59,25 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'right': head.x += 1; break;
         }
 
-        // Check for wall collision
         if (head.x < 0 || head.x >= canvas.width / gridSize || head.y < 0 || head.y >= canvas.height / gridSize) {
             return gameOver();
         }
 
-        // Check for self collision
         for (let i = 1; i < snake.length; i++) {
             if (head.x === snake[i].x && head.y === snake[i].y) {
                 return gameOver();
             }
         }
 
-        snake.unshift(head); // Add new head
+        snake.unshift(head);
 
-        // Check for food collision
+     
         if (head.x === food.x && head.y === food.y) {
             score++;
             scoreElement.textContent = score;
             generateFood();
         } else {
-            snake.pop(); // Remove tail
+            snake.pop();
         }
 
         draw();
