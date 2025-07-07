@@ -1,0 +1,83 @@
+body {
+    /* Sandy desert background color! */
+    background-color: #F5DEB3; 
+    /* The amazing Papyrus font! */
+    font-family: 'Papyrus', fantasy, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    /* A deep brown for the text */
+    color: #5C4033; 
+}
+
+h1 {
+    /* A darker, richer brown for the title */
+    color: #4a2c2a; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.game-container {
+    position: relative;
+}
+
+canvas {
+    background-color: #fff;
+    /* A beautiful terracotta/sienna border */
+    border: 5px solid #A0522D; 
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.score-display {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.2em;
+    /* A strong brown for the score text */
+    color: #5C4033; 
+    font-weight: bold;
+}
+
+.instructions {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #5C4033;
+}
+
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(245, 222, 179, 0.9); /* A semi-transparent tan */
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #4a2c2a;
+}
+
+#restartButton {
+    /* Matching the terracotta border color */
+    background-color: #A0522D; 
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Papyrus', fantasy, serif; /* Make sure the button has the font too! */
+}
+
+#restartButton:hover {
+    /* A darker brown for when you hover over it */
+    background-color: #8B4513; 
+}
+
+.hidden {
+    display: none;
+}
